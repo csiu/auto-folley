@@ -30,9 +30,9 @@ def parse_cue(sub):
 
 for sub in subs:
 #    if "porno" in sub.text or "organezized" in sub.text:
-   
+
     score = target.similarity(nlp(sub.text))
-    if score > 0.70: 
+    if score > 0.70:
         print(sub.text, score)
         cues.append(parse_cue(sub))
 
