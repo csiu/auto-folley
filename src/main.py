@@ -1,44 +1,60 @@
+import argparse
 import spacy
 import pysrt
 import nltk
+# import sys; sys.path.append("/Users/csiu/repo/auto-folley/src")
 import mix
 
-nlp = spacy.load('en_core_web_md')
-subs = pysrt.open('subtitles/taxi_driver.srt')
 
-len(subs)
+usage = """
+"""
 
-#first_sub = subs[0]
-
-#print first_sub.text;
-#print str(first_sub.start.minutes) + " minutes and " + str(first_sub.start.seconds);
-#print str(first_sub.end.minutes) + " minutes and " + str(first_sub.end.seconds);
-
-#print subs.slice(starts_after={'minutes': 2, 'seconds': 30}, ends_before={'minutes': 2, 'seconds': 40}).text;
-
-cues = []
-
-target = nlp(u'funny')
+spacy_model = 'en'
+sound_track = "data/sound/sad-trombone-73581_634166-lq.wav"
+subtitle_track = 'data/subtitles/taxi_driver.srt'
+video = "data/videos/taxi_driver_tp_clip.mkv"
+target_word = u'funny'
+resulting_mkv_video = "out.mkv"
 
 def parse_cue(sub):
     hours = sub.end.hours * 3600000
     minutes = sub.end.minutes * 60000
     seconds = sub.end.seconds * 1000
-    cue = (hours + minutes + seconds, "laugh.wav")
+    cue = (hours + minutes + seconds, sound_track)
     print("event: {}:{}:{}".format(sub.end.hours,sub.end.minutes,sub.end.seconds))
     return cue
 
-for sub in subs:
-#    if "porno" in sub.text or "organezized" in sub.text:
+def main():
+    nlp = spacy.load(spacy_model)
+    subs = pysrt.open(subtitle_track)
+    target = nlp(target_word)
 
-    score = target.similarity(nlp(sub.text))
-    if score > 0.70:
-        print(sub.text, score)
-        cues.append(parse_cue(sub))
+    cues = []
+    for sub in subs:
+        score = target.similarity(nlp(sub.text))
+        if score > 0.70:
+            # print(sub.text, score)
+            cues.append(parse_cue(sub))
 
-print(cues)
-#ts, wav = cues[0]
-video = "taxi_driver.mkv"
+    # print(cues)
+    mix.add_wavs(cues, video, resulting_mkv_video)
 
+if __name__ == '__main__':
+    # parser = argparse.ArgumentParser(
+    #     description=usage,
+    #     formatter_class=argparse.RawTextHelpFormatter)
+    #
+    # parser.add_argument(
+    #     '-i', '--infile', dest='infile',
+    #     action='store',
+    #     default=None,
+    #     type=str,
+    #     #choices=['','',''],
+    #     required=True,
+    #     help='path to input file')
+    #
+    # ## get at the arguments
+    # args = parser.parse_args()
 
-mix.add_wavs(cues, video)
+    ## do something...
+    main()
