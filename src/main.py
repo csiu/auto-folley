@@ -40,21 +40,45 @@ def main():
     mix.add_wavs(cues, video, resulting_mkv_video)
 
 if __name__ == '__main__':
-    # parser = argparse.ArgumentParser(
-    #     description=usage,
-    #     formatter_class=argparse.RawTextHelpFormatter)
-    #
-    # parser.add_argument(
-    #     '-i', '--infile', dest='infile',
-    #     action='store',
-    #     default=None,
-    #     type=str,
-    #     #choices=['','',''],
-    #     required=True,
-    #     help='path to input file')
-    #
-    # ## get at the arguments
-    # args = parser.parse_args()
 
-    ## do something...
+    parser = argparse.ArgumentParser(
+        description=usage,
+        formatter_class=argparse.RawTextHelpFormatter)
+
+    parser.add_argument(
+        '-m', '--model', dest='spacy_model',
+        default = 'en',
+        help = "spaCy model to use. Default = 'en'.\n"
+        "More information at https://spacy.io/docs/usage/models")
+    parser.add_argument(
+        '-t', '--threshold', dest='threshold',
+        default = 0.58,
+        help = "Threshold for sound effect")
+    parser.add_argument(
+        '-w', '--target_word', dest='target_word',
+        default = u'sad',
+        help = "Word used for modelling")
+
+    parser.add_argument(
+        '--video', dest='video',
+        default = "data/casablanca-rEWaqUVac3M.mp4",
+        help = "mp4 video clip")
+    parser.add_argument(
+        '--sub', dest='subtitle_track',
+        default = 'data/casablanca-rEWaqUVac3M.srt',
+        help = "srt subtitle track of the video clip")
+    parser.add_argument(
+        '--sound', dest='sound_track',
+        default = "data/sound/sad-trombone-73581_634166-lq.wav",
+        help = "wav file containing a sound effect to add.")
+
+    parser.add_argument(
+        '-o', '--output', dest='output_video',
+        default = "out.mp4",
+        help = "Output mp4 video")
+
+    ## get at the arguments
+    args = parser.parse_args()
+
+    # do something...
     main()
