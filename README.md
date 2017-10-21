@@ -22,6 +22,7 @@ conda install spacy
 python -m spacy download en
 conda install nltk
 pip install pysrt
+brew install ffmpeg
 ```
 
 # Usage
