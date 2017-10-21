@@ -1,6 +1,6 @@
 # Hacking sound to video
 
-Everyone watches movies and sound effects make movies better, more dramatic. The idea that our team had for the Global AI Hackathon is simple. We prototyped adding a sound effect to the evocative parts of a movie.
+Everyone watches movies and sound effects make movies better, more dramatic. The idea that our team had for the Global AI Hackathon (June 23–25, 2017) is simple. We prototyped adding a sound effect to the evocative parts of a movie.
 
 ![](img/autofoley-head-smile.png)
 
