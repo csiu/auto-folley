@@ -8,13 +8,13 @@ import mix
 usage = """
 """
 
-spacy_model = 'en'
-sound_track = "data/sound/sad-trombone-73581_634166-lq.wav"
-subtitle_track = 'data/casablanca-rEWaqUVac3M.srt'
-video = "data/casablanca-rEWaqUVac3M.mp4"
-target_word = u'sad'
-output_video = "out.mp4"
-threshold = 0.58
+# spacy_model = 'en'
+# sound_track = "data/sad-trombone-73581_634166-lq.wav"
+# subtitle_track = 'data/casablanca-rEWaqUVac3M.srt'
+# video = "data/casablanca-rEWaqUVac3M.mp4"
+# target_word = u'sad'
+# output_video = "out.mp4"
+# threshold = 0.58
 
 def parse_cue(sub):
     hours = sub.end.hours * 3600000
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         help = "srt subtitle track of the video clip")
     parser.add_argument(
         '--sound', dest='sound_track',
-        default = "data/sound/sad-trombone-73581_634166-lq.wav",
+        default = "data/sad-trombone-73581_634166-lq.wav",
         help = "wav file containing a sound effect to add.")
 
     parser.add_argument(
@@ -79,6 +79,13 @@ if __name__ == '__main__':
 
     ## get at the arguments
     args = parser.parse_args()
+    spacy_model    = args.spacy_model
+    threshold      = args.threshold
+    target_word    = args.target_word
+    video          = args.video
+    subtitle_track = args.subtitle_track
+    sound_track    = args.sound_track
+    output_video   = args.output_video
 
     # do something...
     main()
