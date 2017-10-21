@@ -13,7 +13,7 @@ sound_track = "data/sound/sad-trombone-73581_634166-lq.wav"
 subtitle_track = 'data/casablanca-rEWaqUVac3M.srt'
 video = "data/casablanca-rEWaqUVac3M.mp4"
 target_word = u'sad'
-resulting_mkv_video = "out.mp4"
+output_video = "out.mp4"
 threshold = 0.58
 
 def parse_cue(sub):
@@ -37,7 +37,7 @@ def main():
             cues.append(parse_cue(sub))
 
     # print(cues)
-    mix.add_wavs(cues, video, resulting_mkv_video)
+    mix.add_wavs(cues, video, output_video)
 
 if __name__ == '__main__':
 
