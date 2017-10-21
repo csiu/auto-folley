@@ -25,4 +25,12 @@ pip install pysrt
 brew install ffmpeg
 ```
 
-# Usage
+# Usage/Example
+
+```
+python src/main.py --video data/casablanca-rEWaqUVac3M.mp4 --sub data/casablanca-rEWaqUVac3M.srt --sound data/sad-trombone-73581_634166-lq.wav --w sad
+```
+
+# Acknowledgements
+
+Team: Celia, Scott, Albertina, Jacky, Casey, Jeff, Nomoyun, Michael

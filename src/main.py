@@ -5,8 +5,7 @@ import nltk
 import mix
 
 
-usage = """
-"""
+usage = """Hacking sound into video"""
 
 # spacy_model = 'en'
 # sound_track = "data/sad-trombone-73581_634166-lq.wav"
@@ -45,29 +44,33 @@ if __name__ == '__main__':
         description=usage,
         formatter_class=argparse.RawTextHelpFormatter)
 
-    parser.add_argument(
+    parser_model = parser.add_argument_group('Model arguments')
+    parser_model.add_argument(
         '-m', '--model', dest='spacy_model',
         default = 'en',
         help = "spaCy model to use. Default = 'en'.\n"
         "More information at https://spacy.io/docs/usage/models")
-    parser.add_argument(
+    parser_model.add_argument(
         '-t', '--threshold', dest='threshold',
+        type = float,
         default = 0.58,
-        help = "Threshold for sound effect")
-    parser.add_argument(
+        help = "Threshold for sound effect. Default = 0.58.")
+    parser_model.add_argument(
         '-w', '--target_word', dest='target_word',
+        type = unicode,
         default = u'sad',
-        help = "Word used for modelling")
+        help = "Word used for modelling. Default = 'sad'.")
 
-    parser.add_argument(
+    parser_file_must_exist = parser.add_argument_group('Path to file arguments')
+    parser_file_must_exist.add_argument(
         '--video', dest='video',
         default = "data/casablanca-rEWaqUVac3M.mp4",
         help = "mp4 video clip")
-    parser.add_argument(
+    parser_file_must_exist.add_argument(
         '--sub', dest='subtitle_track',
         default = 'data/casablanca-rEWaqUVac3M.srt',
         help = "srt subtitle track of the video clip")
-    parser.add_argument(
+    parser_file_must_exist.add_argument(
         '--sound', dest='sound_track',
         default = "data/sad-trombone-73581_634166-lq.wav",
         help = "wav file containing a sound effect to add.")
@@ -75,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-o', '--output', dest='output_video',
         default = "out.mp4",
-        help = "Output mp4 video")
+        help = "Output mp4 video. Default = 'out.mp4'")
 
     ## get at the arguments
     args = parser.parse_args()
