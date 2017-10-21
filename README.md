@@ -25,7 +25,38 @@ pip install pysrt
 brew install ffmpeg
 ```
 
-# Usage/Example
+# Usage
+
+```
+$ python src/main.py -h
+
+usage: main.py [-h] [-m SPACY_MODEL] [-t THRESHOLD] [-w TARGET_WORD]
+               [--video VIDEO] [--sub SUBTITLE_TRACK] [--sound SOUND_TRACK]
+               [-o OUTPUT_VIDEO]
+
+Hacking sound into video
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTPUT_VIDEO, --output OUTPUT_VIDEO
+                        Output mp4 video. Default = 'out.mp4'
+
+Model arguments:
+  -m SPACY_MODEL, --model SPACY_MODEL
+                        spaCy model to use. Default = 'en'.
+                        More information at https://spacy.io/docs/usage/models
+  -t THRESHOLD, --threshold THRESHOLD
+                        Threshold for sound effect. Default = 0.58.
+  -w TARGET_WORD, --target_word TARGET_WORD
+                        Word used for modelling. Default = 'sad'.
+
+Path to file arguments:
+  --video VIDEO         mp4 video clip
+  --sub SUBTITLE_TRACK  srt subtitle track of the video clip
+  --sound SOUND_TRACK   wav file containing a sound effect to add.
+```
+
+Example
 
 ```
 python src/main.py --video data/casablanca-rEWaqUVac3M.mp4 --sub data/casablanca-rEWaqUVac3M.srt --sound data/sad-trombone-73581_634166-lq.wav --w sad
